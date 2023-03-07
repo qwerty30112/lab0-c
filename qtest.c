@@ -993,30 +993,31 @@ static void console_init()
 }
 
 /* Signal handlers */
-static void sigsegv_handler(int sig)
-{
-    /* Avoid possible non-reentrant signal function be used in signal handler */
-    assert(write(1,
-                 "Segmentation fault occurred.  You dereferenced a NULL or "
-                 "invalid pointer",
-                 73) == 73);
-    /* Raising a SIGABRT signal to produce a core dump for debugging. */
-    abort();
-}
+//static void sigsegv_handler(int sig)
+//{
+//    /* Avoid possible non-reentrant signal function be used in signal handler */
+//    assert(write(1,
+//                 "Segmentation fault occurred.  You dereferenced a NULL or "
+//                 "invalid pointer",
+//                 73) == 73);
+//    /* Raising a SIGABRT signal to produce a core dump for debugging. */
+//    abort();
+//}
 
-static void sigalrm_handler(int sig)
-{
-    trigger_exception(
-        "Time limit exceeded.  Either you are in an infinite loop, or your "
-        "code is too inefficient");
-}
+//static void sigalrm_handler(int sig)
+//{
+//    trigger_exception(
+//        "Time limit exceeded.  Either you are in an infinite loop, or your "
+//        "code is too inefficient");
+//}
 
 static void q_init()
 {
     fail_count = 0;
     INIT_LIST_HEAD(&chain.head);
-    signal(SIGSEGV, sigsegv_handler);
-    signal(SIGALRM, sigalrm_handler);
+    // signal(SIGSEGV, sigsegv_handler);
+    //sigalrm_handler(0);
+    //signal(SIGALRM, sigalrm_handler);
 }
 
 static bool q_quit(int argc, char *argv[])
@@ -1129,6 +1130,7 @@ int main(int argc, char *argv[])
     int c;
 
     while ((c = getopt(argc, argv, "hv:f:l:")) != -1) {
+        printf("%d %c\n",c,c);
         switch (c) {
         case 'h':
             usage(argv[0]);

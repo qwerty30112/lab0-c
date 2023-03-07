@@ -391,7 +391,7 @@ static bool do_time(int argc, char *argv[])
     return ok;
 }
 
-static bool use_linenoise = true;
+static bool use_linenoise = false;
 static int web_fd;
 
 static bool do_web(int argc, char *argv[])
