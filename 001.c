@@ -15,6 +15,9 @@ void a001(struct list_head *head)
 
     my_data *a;
 
+    element_t *element=list_first_entry(head, element_t, list);
+    element->list.next;
+
     //const my_data *ptr= list_entry(a,struct Node,list);
     const struct Node *ptr = list_entry(&a->list, struct Node, list);
 
